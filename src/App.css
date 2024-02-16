@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Sans Pro';
+  src: url('../src/assets/fonts/SourceCodePro-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+main {
+  padding: 1rem;
+  background-color: white;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+  color: black;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+main > p {
+  color: black;
+  text-align: center;
+  margin-bottom: 0.4rem;
+  font-family: 'Sans Pro';
+  color: #22222299;
+}
+
+.cards {
+  margin: 2rem 0;
+  position: relative;
+}
+
+.cards > .card {
+  position: absolute;
+}
+
+.addCard {
+  width: 100%;
+  font-size: 1.5rem;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 1.5rem 0;
+}

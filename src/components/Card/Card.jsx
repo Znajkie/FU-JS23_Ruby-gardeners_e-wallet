@@ -1,24 +1,53 @@
 import './Card.scss';
 import PropTypes from 'prop-types';
 
-const Card = ({ cardDetails }) => {
+const Card = ({
+  cardNumber,
+  cardholderName,
+  expiryDate,
+  logo,
+  index,
+  backgroundColor,
+  fontColor,
+}) => {
   return (
-    <div className="card">
-      <div>{cardDetails.cardNumber}</div>
-      <div>CARDHOLDER NAME: {cardDetails.cardholderName}</div>
-      <div>VALID THRU: {cardDetails.expiryDate}</div>
+    <div
+      className="card"
+      style={{
+        backgroundColor: backgroundColor,
+        top: index ? `${index * 3}rem` : '',
+        color:fontColor?fontColor:"black"
+      }}
+    >
+      <section className="wrapperLogo">
+        <section>
+          <img src="src/assets/noun_wifi_159786 1.svg" alt="Wifi symbol"></img>
+        </section>
+        <img src={logo} alt=""></img>
+      </section>
+
+      <img
+        className="imgChip"
+        src="src/assets/chip.svg"
+        alt="chip symbol"
+      ></img>
+      <div className="cardNumber">{cardNumber}</div>
+      <section className="bottom">
+        <div className="wrapperName">
+          <div className="cardName">
+            <p>CARDHOLDER NAME</p>
+            <span className="cardholderName">{cardholderName}</span>
+          </div>
+        </div>
+        <div className="wapperDate">
+          <div className="cardDate">
+            <p>VALID THRU</p>
+            <span className="expiryDate">{expiryDate}</span>
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-
-Card.propTypes = {
-  cardDetails: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    cardNumber: PropTypes.string.isRequired,
-    expiryDate: PropTypes.string.isRequired,
-    cardholderName: PropTypes.string.isRequired,
-    ccv: PropTypes.number.isRequired,
-  }),
 };
 
 export default Card;
