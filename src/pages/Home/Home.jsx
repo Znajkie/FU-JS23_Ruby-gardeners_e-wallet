@@ -1,8 +1,38 @@
-import React from 'react';
-import Card from './components/card/card';
+import Card from "../../components/Card/Card";
 
-const Home = () => {
-  return <div>{Card}</div>;
+const Home = ({ cardDetails, setMainCard, mainCard }) => {
+  const changeMainCard = (id) => {
+    const newCard = cardDetails.find((item) => item.id === id);
+    setMainCard(newCard);
+  };
+
+  return (
+    <main>
+      <h1>E-WALLET</h1>
+      <p>ACTIVE CARD</p>
+      <Card {...mainCard} />
+      <section
+        className="cards"
+        style={{
+          height: `${15.063 + 3 * (cardDetails.length - 2)}rem`,
+          width: "100%",
+          cursor: "pointer",
+        }}
+      >
+        {cardDetails
+          .filter((item) => item.id !== mainCard.id)
+          .map((item, index) => (
+            <Card
+              key={item.id}
+              {...item}
+              index={index}
+              fontColor="white"
+              changeMainCard={changeMainCard}
+            />
+          ))}
+      </section>
+      <button className="addCard">ADD NEW A CARD</button>
+    </main>
+  );
 };
-
 export default Home;

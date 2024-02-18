@@ -1,0 +1,37 @@
+.formWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+#ccv {
+  width: 11rem;
+}
+
+#validThru {
+  width: 11rem;
+}
+
+.form--inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+form {
+  margin: 3rem 0;
+}
+.form--label {
+  color: black;
+  font-size: 0.8rem;
+  text-align: left;
+  font-family: "Sans Pro";
+  color: #22222299;
+  letter-spacing: 0;
+}
+
+form input,
+form select {
+  padding-left: 1rem;
+  height: 3rem;
+  border-radius: 0.4rem;
+}

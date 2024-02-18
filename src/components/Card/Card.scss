@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'PTMono-Regular';
-  src: url('../../assets/fonts/PTMono-Regular.ttf') format('truetype');
+  font-family: "PTMono-Regular";
+  src: url("../../assets/fonts/PTMono-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -12,14 +12,14 @@
 }
 
 .card {
-  font-family: 'PTMono-Regular', sans-serif;
+  font-family: "PTMono-Regular", sans-serif;
   color: black;
   width: 23.875rem;
   height: 15.063rem;
   border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.3);
-  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
 .wrapperLogo {
@@ -36,8 +36,9 @@
 .cardNumber {
   display: flex;
   justify-content: center;
-  font-size: 32px;
+  font-size: 30.5px;
   letter-spacing: 3%;
+  padding: 0;
 }
 
 .cardName p {
@@ -58,8 +59,6 @@
   font-size: 18px;
 }
 
-
-
 .bottom {
   display: flex;
   justify-content: space-between;
@@ -75,4 +74,3 @@
 .wrapperDate {
   display: flex;
 }
-

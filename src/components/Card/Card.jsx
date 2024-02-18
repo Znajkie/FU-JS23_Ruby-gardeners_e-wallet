@@ -1,5 +1,4 @@
-import './Card.scss';
-import PropTypes from 'prop-types';
+import "./Card.scss";
 
 const Card = ({
   cardNumber,
@@ -9,15 +8,18 @@ const Card = ({
   index,
   backgroundColor,
   fontColor,
+  changeMainCard,
+  id,
 }) => {
   return (
     <div
       className="card"
       style={{
         backgroundColor: backgroundColor,
-        top: index ? `${index * 3}rem` : '',
-        color:fontColor?fontColor:"black"
+        top: index ? `${index * 3}rem` : "",
+        color: fontColor ? fontColor : "black",
       }}
+      onClick={() => changeMainCard(id)}
     >
       <section className="wrapperLogo">
         <section>

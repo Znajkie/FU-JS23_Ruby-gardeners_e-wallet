@@ -1,67 +1,71 @@
-import React from 'react';
-import Card from './components/Card/Card';
-import { useState } from 'react';
-import bitLogo from './assets/BitcoinLogo.svg';
-import blockC from './assets/blockC.svg';
-import ninjaB from './assets/ninjaB.svg';
-import evilC from './assets/evilC.svg';
-import './App.css';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  // RouteProvider,
-} from 'react-router-dom';
-import AddCard from './pages/AddCard/AddCard';
+import React from "react";
+import { useState } from "react";
+import bitLogo from "./assets/BitcoinLogo.svg";
+import blockC from "./assets/blockC.svg";
+import ninjaB from "./assets/ninjaB.svg";
+import evilC from "./assets/evilC.svg";
+import "./App.css";
+import Home from "./pages/Home/Home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AddCard from "./pages/AddCard/AddCard";
 
 const cardDetails = [
   {
-    cardNumber: '1234 5678 9101 1123',
-    cardholderName: 'Christoffer Wallenberg',
-    expiryDate: '12/22',
+    cardNumber: "1234 5678 9101 1123",
+    cardholderName: "Christoffer Wallenberg",
+    expiryDate: "12/22",
     logo: bitLogo,
     id: 1,
-    backgroundColor: '#ffb342',
+    backgroundColor: "#ffb342",
   },
   {
-    cardNumber: '6666 6666 6666 6666',
-    cardholderName: 'Linus Hallberg',
-    expiryDate: '10/23',
+    cardNumber: "6666 6666 6666 6666",
+    cardholderName: "Linus Hallberg",
+    expiryDate: "10/23",
     logo: blockC,
     id: 2,
-    backgroundColor: '#323232',
+    backgroundColor: "#323232",
   },
   {
-    cardNumber: '3333 3333 3333 3333',
-    cardholderName: 'Henrik Grönberg',
-    expiryDate: '8/23',
+    cardNumber: "3333 3333 3333 3333",
+    cardholderName: "Henrik Grönberg",
+    expiryDate: "8/23",
     logo: ninjaB,
     id: 3,
-    backgroundColor: '#7E50E3',
+    backgroundColor: "#7E50E3",
   },
   {
-    cardNumber: '1337 1337 1337 1337',
-    cardholderName: 'Jens Grönberg',
-    expiryDate: '8/23',
+    cardNumber: "1337 1337 1337 1337",
+    cardholderName: "Jens Grönberg",
+    expiryDate: "8/23",
     logo: evilC,
     id: 4,
-    backgroundColor: '#E33050',
+    backgroundColor: "#E33050",
   },
 ];
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route>
-      <Route path="/addcard" element={<AddCard />} />
-    </Route>
-  )
-);
-
 const App = () => {
+  const [mainCard, setMainCard] = useState(cardDetails[0]);
   const [data, setData] = useState(cardDetails);
 
-  return <AddCard cardDetails={data} />;
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              cardDetails={data}
+              mainCard={mainCard}
+              setMainCard={setMainCard}
+            />
+          }
+        />
+        <Route path="/addCard" element={<AddCard />} />
+        <Route path="*" element={<div>Error</div>} />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
-

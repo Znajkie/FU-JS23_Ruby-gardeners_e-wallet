@@ -1,13 +1,14 @@
 @font-face {
-  font-family: 'Sans Pro';
-  src: url('../src/assets/fonts/SourceCodePro-VariableFont_wght.ttf') format('truetype');
+  font-family: "Sans Pro";
+  src: url("../src/assets/fonts/SourceCodePro-VariableFont_wght.ttf")
+    format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 main {
   padding: 1rem;
-  background-color: white;
+  background-color: rgb(231, 231, 231);
 }
 
 h1 {
@@ -22,7 +23,7 @@ main > p {
   color: black;
   text-align: center;
   margin-bottom: 0.4rem;
-  font-family: 'Sans Pro';
+  font-family: "Sans Pro";
   color: #22222299;
 }
 
