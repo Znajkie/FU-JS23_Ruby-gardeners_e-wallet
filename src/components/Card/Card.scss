@@ -5,6 +5,15 @@
   font-style: normal;
 }
 
+@mixin card-base {
+  font-family: "PTMono-Regular", sans-serif;
+  color: black;
+  width: 23.875rem;
+  height: 15.063rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,20 +21,13 @@
 }
 
 .card {
-  font-family: "PTMono-Regular", sans-serif;
-  color: black;
-  width: 23.875rem;
-  height: 15.063rem;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  @include card-base;
 }
 
 .wrapperLogo {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1rem 1rem;
+  padding: 1rem;
   padding-bottom: 0;
 }
 

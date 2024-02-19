@@ -1,31 +1,80 @@
 import Card from "../../components/Card/Card";
-import bitLogo from "../../assets/bitcoinLogo2.svg";
-import blockC from "../../assets/blockC.png";
-import ninjaB from "../../assets/ninjaB.png";
-import evilC from "../../assets/evilC.png";
 import "./AddCard.scss";
 import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const AddCard = () => {
+const AddCard = ({
+  cardDetails,
+  data,
+  setData,
+  bitLogo,
+  blockC,
+  ninjaB,
+  evilC,
+}) => {
+  const navigate = useNavigate();
+  let newArray = [...data];
+  //Gets the length of the old array of cards, to be used for the id for the new card.
+  let lengthOfArray = newArray.length;
+  //Local storage
+  function addNewCard() {
+    setData([...data, defaultValues]);
+    console.log(data);
+    // newArray.push(defaultValues);
+    //Adds new array with cards into localstorage.
+    localStorage.setItem("Localstorage", JSON.stringify(newArray));
+    navigate("/");
+    defaultValues.id = lengthOfArray + 1;
+  }
+
   const [cardNumber, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
   const [cardHolderName, setCardHolderName] = useState("FIRSTNAME LASTNAME");
   const [validThru, setvalidThru] = useState("MM/YY");
   const [ccv, setCcv] = useState("CCV");
+  const [vendor, setVendor] = useState("");
+  const [bgColor, setBgColor] = useState("#DCDCDC");
+  const [logo, setLogo] = useState("");
+
+  const backgroundColors = [
+    { cardName: "Bitcoin", color: "#ffb342", logo: bitLogo },
+    {
+      cardName: "Block Chain INC",
+      color: "#323232",
+      logo: blockC,
+    },
+    { cardName: "Ninja Bank", color: "#7E50E3", logo: ninjaB },
+    { cardName: "Evil Corp", color: "#E33050", logo: evilC },
+  ];
 
   const defaultValues = {
     cardNumber: cardNumber,
     cardholderName: cardHolderName,
-    expiryDate: "MM/YY",
-    logo: "",
-    id: 6,
-    backgroundColor: "#DCDCDC",
+    expiryDate: validThru,
+    logo: logo,
+    id: lengthOfArray + 1,
+    backgroundColor: bgColor,
   };
 
   return (
     <main>
+      <div
+        className="exitBtn"
+        onClick={() => navigate("/")}
+        style={{
+          cursor: "pointer",
+          position: "absolute",
+          top: "4%",
+          right: "35%",
+        }}
+      >
+        <FaTimes />
+      </div>
       <h1>ADD A NEW BANK CARD</h1>
       <p>NEW CARD</p>
-      <Card {...defaultValues} />
+      <Card {...defaultValues} vendor={vendor} />
       <form>
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardNumber">
@@ -43,6 +92,9 @@ const AddCard = () => {
                 " "
               );
               setCardNumber(formattedInput);
+
+              //Adds cardnumber into new array
+              defaultValues.cardNumber = formattedInput;
             }}
             value={cardNumber === "XXXX XXXX XXXX XXXX" ? "" : cardNumber}
             type="text"
@@ -63,6 +115,8 @@ const AddCard = () => {
                 return;
               }
               const input = e.target.value.replace(/[0-9]/g, "");
+
+              defaultValues.cardholderName = input.toUpperCase();
               setCardHolderName(input.toUpperCase());
             }}
             value={
@@ -83,24 +137,8 @@ const AddCard = () => {
             <input
               // maxLength={5}
               onChange={(e) => {
-                function isValidMMYY(input) {
-                  var regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
-                  return regex.test(input);
-                }
-
-                let inputValue = e.target.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
-                if (inputValue.length > 2) {
-                  inputValue =
-                    inputValue.substring(0, 2) + "/" + inputValue.substring(2); // Insert slash
-                }
-
-                // Update only if length is <= 5 to account for MM/YY and the slash
-                if (
-                  inputValue === "" ||
-                  (isValidMMYY(inputValue) && inputValue.length <= 5)
-                ) {
-                  setvalidThru(inputValue.length === 5 ? inputValue : "MM/YY");
-                }
+                setvalidThru(e.target.value);
+                defaultValues.expiryDate = e.target.value;
               }}
               value={validThru === "MM/YY" ? "" : validThru}
               placeholder="MM/YY"
@@ -123,6 +161,7 @@ const AddCard = () => {
                 const input = e.target.value.replace(/\D/g, "");
 
                 setCcv(input);
+                defaultValues.CCV = input;
               }}
               value={ccv === "CCV" ? "" : ccv}
               placeholder="123"
@@ -135,17 +174,45 @@ const AddCard = () => {
           <label className="form--label" htmlFor="vendor">
             VENDOR
           </label>
-          <select id="vendor">
+          <select
+            value={vendor}
+            onChange={(e) => {
+              setVendor(e.target.value);
+              backgroundColors.map((item) => {
+                if (e.target.value === "") {
+                  setBgColor("#DCDCDC");
+                  setLogo("");
+                }
+                if (item.cardName === e.target.value) {
+                  setBgColor(item.color);
+                  setLogo(item.logo);
+                }
+              });
+            }}
+            id="vendor"
+          >
             <option value=""></option>
-            <option value="bitcoin">Bitcoin</option>
-            <option value="blockC">Block Chain INC</option>
-            <option value="ninjaB">Ninja Bank</option>
-            <option value="evilC">Evil Corp</option>
+            <option value="Bitcoin">Bitcoin</option>
+            <option value="Block Chain INC">Block Chain INC</option>
+            <option value="Ninja Bank">Ninja Bank</option>
+            <option value="Evil Corp">Evil Corp</option>
           </select>
         </div>
       </form>
+      <button
+        className="addCard"
+        onClick={() => {
+          if (cardNumber === "" || cardNumber.length < 16) {
+            toast("Wow so easy!");
+            return;
+          }
 
-      <button className="addCard">ADD CARD</button>
+          addNewCard();
+        }}
+      >
+        ADD CARD
+      </button>
+      <ToastContainer />
     </main>
   );
 };

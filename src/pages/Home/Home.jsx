@@ -1,4 +1,5 @@
 import Card from "../../components/Card/Card";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ cardDetails, setMainCard, mainCard }) => {
   const changeMainCard = (id) => {
@@ -6,6 +7,7 @@ const Home = ({ cardDetails, setMainCard, mainCard }) => {
     setMainCard(newCard);
   };
 
+  const navigate = useNavigate();
   return (
     <main>
       <h1>E-WALLET</h1>
@@ -31,7 +33,9 @@ const Home = ({ cardDetails, setMainCard, mainCard }) => {
             />
           ))}
       </section>
-      <button className="addCard">ADD NEW A CARD</button>
+      <button className="newCard" onClick={() => navigate("/addCard")}>
+        ADD NEW A CARD
+      </button>
     </main>
   );
 };

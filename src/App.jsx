@@ -61,7 +61,15 @@ const App = () => {
             />
           }
         />
-        <Route path="/addCard" element={<AddCard />} />
+        <Route
+          path="/addCard"
+          element={
+            <AddCard
+              cardDetails={data}
+              {...{ bitLogo, blockC, ninjaB, evilC, setData, data }}
+            />
+          }
+        />
         <Route path="*" element={<div>Error</div>} />
       </Routes>
     </Router>

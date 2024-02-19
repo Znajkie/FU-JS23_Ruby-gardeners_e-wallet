@@ -1,4 +1,6 @@
 import "./Card.scss";
+import chip from "../../assets/chip.svg";
+import darkchip from "../../assets/darkChip.svg";
 
 const Card = ({
   cardNumber,
@@ -10,6 +12,7 @@ const Card = ({
   fontColor,
   changeMainCard,
   id,
+  vendor,
 }) => {
   return (
     <div
@@ -30,7 +33,7 @@ const Card = ({
 
       <img
         className="imgChip"
-        src="src/assets/chip.svg"
+        src={vendor === "" ? darkchip : chip}
         alt="chip symbol"
       ></img>
       <div className="cardNumber">{cardNumber}</div>

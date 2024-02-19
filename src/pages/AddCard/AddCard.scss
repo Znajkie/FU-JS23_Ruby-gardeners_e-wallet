@@ -1,12 +1,33 @@
-.formWrapper {
+@mixin form-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-#ccv {
-  width: 11rem;
+@mixin input-styles {
+  padding-left: 1rem;
+  height: 3rem;
+  border-radius: 0.4rem;
 }
 
+@mixin label-styles {
+  color: black;
+  font-size: 0.8rem;
+  text-align: left;
+  font-family: "Sans Pro";
+  color: #22222299;
+  letter-spacing: 0;
+}
+
+@mixin select-option-styles {
+  text-align: center;
+  font-family: monospace;
+}
+
+.formWrapper {
+  @include form-wrapper;
+}
+
+#ccv,
 #validThru {
   width: 11rem;
 }
@@ -20,18 +41,24 @@
 form {
   margin: 3rem 0;
 }
+
 .form--label {
-  color: black;
-  font-size: 0.8rem;
-  text-align: left;
-  font-family: "Sans Pro";
-  color: #22222299;
-  letter-spacing: 0;
+  @include label-styles;
 }
 
 form input,
 form select {
-  padding-left: 1rem;
-  height: 3rem;
-  border-radius: 0.4rem;
+  @include input-styles;
+}
+
+select option {
+  @include select-option-styles;
+}
+
+.exitBtn {
+  // funkar?
+  cursor: "pointer";
+  position: "absolute";
+  top: 0;
+  right: 20%;
 }
