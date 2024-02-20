@@ -21,6 +21,7 @@
 @mixin select-option-styles {
   text-align: center;
   font-family: monospace;
+  font-size: 1.5rem;
 }
 
 .formWrapper {
@@ -39,7 +40,7 @@
 }
 
 form {
-  margin: 3rem 0;
+  margin-top: 3rem;
 }
 
 .form--label {
@@ -56,9 +57,11 @@ select option {
 }
 
 .exitBtn {
-  // funkar?
-  cursor: "pointer";
-  position: "absolute";
-  top: 0;
-  right: 20%;
+  transform-origin: center;
+  color: rgb(106, 106, 106);
+  transition: all 0.3s ease-in-out;
+}
+.exitBtn:hover {
+  color: rgb(27, 27, 27);
+  transform: rotate(360deg);
 }
