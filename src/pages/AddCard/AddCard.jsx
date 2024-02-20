@@ -5,6 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
 
+
 const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
