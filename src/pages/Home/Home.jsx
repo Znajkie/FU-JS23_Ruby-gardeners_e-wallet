@@ -1,7 +1,7 @@
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
 
-const Home = ({ cardDetails, setMainCard, mainCard }) => {
+const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
   const changeMainCard = (id) => {
     const newCard = cardDetails.find((item) => item.id === id);
     setMainCard(newCard);
@@ -30,6 +30,8 @@ const Home = ({ cardDetails, setMainCard, mainCard }) => {
               index={index}
               fontColor="white"
               changeMainCard={changeMainCard}
+              setData={setData}
+              cardDetails={cardDetails}
             />
           ))}
       </section>
