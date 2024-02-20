@@ -5,7 +5,8 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
 
-const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
+
+const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
   const [cardHolderName, setCardHolderName] = useState("FIRSTNAME LASTNAME");
@@ -14,17 +15,6 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
   const [vendor, setVendor] = useState("");
   const [bgColor, setBgColor] = useState("#DCDCDC");
   const [logo, setLogo] = useState("");
-
-  const backgroundColors = [
-    { cardName: "Bitcoin", color: "#ffb342", logo: bitLogo },
-    {
-      cardName: "Block Chain INC",
-      color: "#323232",
-      logo: blockC,
-    },
-    { cardName: "Ninja Bank", color: "#7E50E3", logo: ninjaB },
-    { cardName: "Evil Corp", color: "#E33050", logo: evilC },
-  ];
 
   const defaultValues = {
     cardNumber: cardNumber,
@@ -61,6 +51,11 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (vendor === "") {
+            console.log("Choose a vendor");
+            //Toaster
+            return;
+          }
           setData([...data, defaultValues]);
           navigate("/");
         }}
@@ -97,7 +92,7 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
 
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardHolderName">
-            CARD HOLDER NAME
+            CARDHOLDER NAME
           </label>
           <input
             onChange={(e) => {
@@ -170,32 +165,8 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
             VENDOR
           </label>
           <div className="dropdown-container">
-            <DropdownMenu />
+            <DropdownMenu {...{ setBgColor, setLogo, setVendor }} />
           </div>
-          <select
-            value={vendor}
-            onChange={(e) => {
-              setVendor(e.target.value);
-              backgroundColors.map((item) => {
-                if (e.target.value === "") {
-                  setBgColor("#DCDCDC");
-                  setLogo("");
-                }
-                if (item.cardName === e.target.value) {
-                  setBgColor(item.color);
-                  setLogo(item.logo);
-                }
-              });
-            }}
-            id="vendor"
-            required
-          >
-            <option value=""></option>
-            <option value="Bitcoin">Bitcoin</option>
-            <option value="Block Chain INC">Block Chain INC</option>
-            <option value="Ninja Bank">Ninja Bank</option>
-            <option value="Evil Corp">Evil Corp</option>
-          </select>
         </div>
         <button className="addCard" type="submit">
           ADD CARD
