@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import bitcoinVendor from '../../../assets/bitcoinVendor.png';
-import blockC from '../../../assets/blockC.png';
-import evilC from '../../../assets/evilC.png';
-import ninjaB from '../../../assets/ninjaB.png';
-import './dropDownMenu.scss';
+import React, { useState, useEffect } from "react";
+// vendor
+import bitcoinVendor from "../../../assets/bitcoinVendor.png";
+import blockC from "../../../assets/blockC.png";
+import evilC from "../../../assets/evilC.png";
+import ninjaB from "../../../assets/ninjaB.png";
+// logo
+import bitLogo from "../../../assets/BitcoinLogo.svg";
+import blockCLogo from "../../../assets/blockC.svg";
+import ninjaBLogo from "../../../assets/ninjaB.svg";
+import evilCLogo from "../../../assets/evilC.svg";
+import "./dropDownMenu.scss";
 
-const DropdownMenu = () => {
+const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = (e) => {
@@ -15,37 +21,44 @@ const DropdownMenu = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log('Document clicked');
-      if (!event.target.closest('.dropdown-container') && isOpen) {
-        console.log('Outside dropdown clicked');
+      if (!event.target.closest(".dropdown-container") && isOpen) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
 
   const options = [
-    { src: bitcoinVendor, value: '1' },
-    { src: blockC, value: '2' },
-    { src: evilC, value: '3' },
-    { src: ninjaB, value: '4' },
+    { src: bitcoinVendor, value: "1", color: "#ffb342", logo: bitLogo },
+    { src: blockC, value: "2", color: "#323232", logo: blockCLogo },
+    { src: evilC, value: "3", color: "#7E50E3", logo: ninjaBLogo },
+    { src: ninjaB, value: "4", color: "#E33050", logo: evilCLogo },
   ];
 
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" style={{ position: "relative" }}>
       <button onClick={toggleDropdown}>&#8744;</button>
       {isOpen && (
-        <ul>
+        <ul
+          style={{
+            position: "absolute",
+            backgroundColor: "white",
+            width: "100%",
+          }}
+          className="dropDownOption"
+        >
           {options.map((option, index) => (
             <li
               key={index}
               onClick={(e) => {
                 e.stopPropagation(); // Prevents the click from being propagated to document
-                console.log(option.value);
+                setLogo(option.logo);
+                setBgColor(option.color);
+                setVendor(option.value);
                 setIsOpen(false);
               }}
             >

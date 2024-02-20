@@ -25,7 +25,7 @@ const Card = ({
         top: index ? `${index * 3}rem` : "",
         color: fontColor ? fontColor : "black",
       }}
-      onClick={() => changeMainCard(id)}
+      onClick={() => (fontColor ? changeMainCard(id) : null)}
     >
       {fontColor ? (
         <div

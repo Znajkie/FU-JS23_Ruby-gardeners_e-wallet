@@ -5,8 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
 
-
-const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
+const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
   const [cardHolderName, setCardHolderName] = useState("FIRSTNAME LASTNAME");
@@ -15,17 +14,6 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
   const [vendor, setVendor] = useState("");
   const [bgColor, setBgColor] = useState("#DCDCDC");
   const [logo, setLogo] = useState("");
-
-  const backgroundColors = [
-    { cardName: "Bitcoin", color: "#ffb342", logo: bitLogo },
-    {
-      cardName: "Block Chain INC",
-      color: "#323232",
-      logo: blockC,
-    },
-    { cardName: "Ninja Bank", color: "#7E50E3", logo: ninjaB },
-    { cardName: "Evil Corp", color: "#E33050", logo: evilC },
-  ];
 
   const defaultValues = {
     cardNumber: cardNumber,
@@ -40,15 +28,13 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
     <main style={{ position: "relative" }}>
       <div
         className="exitBtn"
-        onClick={() => navigate('/')}
+        onClick={() => navigate("/")}
         style={{
-
           cursor: "pointer",
           position: "absolute",
           top: "0.5rem",
           right: "1rem",
           fontSize: "1.5rem",
-
         }}
       >
         <FaTimes />
@@ -64,6 +50,11 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (vendor === "") {
+            console.log("Choose a vendor");
+            //Toaster
+            return;
+          }
           setData([...data, defaultValues]);
           navigate("/");
         }}
@@ -74,21 +65,21 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === '') {
-                setCardNumber('XXXX XXXX XXXX XXXX');
+              if (e.target.value === "") {
+                setCardNumber("XXXX XXXX XXXX XXXX");
                 return;
               }
-              const input = e.target.value.replace(/\D/g, '');
+              const input = e.target.value.replace(/\D/g, "");
               const formattedInput = input.replace(
                 /\B(?=(\d{4})+(?!\d))/g,
-                ' '
+                " "
               );
               setCardNumber(formattedInput);
 
               //Adds cardnumber into new array
               defaultValues.cardNumber = formattedInput;
             }}
-            value={cardNumber === 'XXXX XXXX XXXX XXXX' ? '' : cardNumber}
+            value={cardNumber === "XXXX XXXX XXXX XXXX" ? "" : cardNumber}
             type="text"
             maxLength={19}
             id="cardNumber"
@@ -100,21 +91,21 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
 
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardHolderName">
-            CARD HOLDER NAME
+            CARDHOLDER NAME
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === '') {
-                setCardHolderName('FIRSTNAME LASTNAME');
+              if (e.target.value === "") {
+                setCardHolderName("FIRSTNAME LASTNAME");
                 return;
               }
-              const input = e.target.value.replace(/[0-9]/g, '');
+              const input = e.target.value.replace(/[0-9]/g, "");
 
               defaultValues.cardholderName = input.toUpperCase();
               setCardHolderName(input.toUpperCase());
             }}
             value={
-              cardHolderName === 'FIRSTNAME LASTNAME' ? '' : cardHolderName
+              cardHolderName === "FIRSTNAME LASTNAME" ? "" : cardHolderName
             }
             type="text"
             id="cardHolderName"
@@ -133,7 +124,7 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
                 setvalidThru(e.target.value);
                 defaultValues.expiryDate = e.target.value;
               }}
-              value={validThru === 'MM/YY' ? '' : validThru}
+              value={validThru === "MM/YY" ? "" : validThru}
               placeholder="MM/YY"
               type="text"
               id="validThru"
@@ -150,16 +141,16 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
             <input
               maxLength={3}
               onChange={(e) => {
-                if (e.target.value === '') {
-                  setCcv('CCV');
+                if (e.target.value === "") {
+                  setCcv("CCV");
                   return;
                 }
-                const input = e.target.value.replace(/\D/g, '');
+                const input = e.target.value.replace(/\D/g, "");
 
                 setCcv(input);
                 defaultValues.CCV = input;
               }}
-              value={ccv === 'CCV' ? '' : ccv}
+              value={ccv === "CCV" ? "" : ccv}
               placeholder="123"
               type="text"
               id="ccv"
@@ -173,32 +164,8 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
             VENDOR
           </label>
           <div className="dropdown-container">
-            <DropdownMenu />
+            <DropdownMenu {...{ setBgColor, setLogo, setVendor }} />
           </div>
-          <select
-            value={vendor}
-            onChange={(e) => {
-              setVendor(e.target.value);
-              backgroundColors.map((item) => {
-                if (e.target.value === '') {
-                  setBgColor('#DCDCDC');
-                  setLogo('');
-                }
-                if (item.cardName === e.target.value) {
-                  setBgColor(item.color);
-                  setLogo(item.logo);
-                }
-              });
-            }}
-            id="vendor"
-            required
-          >
-            <option value=""></option>
-            <option value="Bitcoin">Bitcoin</option>
-            <option value="Block Chain INC">Block Chain INC</option>
-            <option value="Ninja Bank">Ninja Bank</option>
-            <option value="Evil Corp">Evil Corp</option>
-          </select>
         </div>
         <button className="addCard" type="submit">
           ADD CARD
