@@ -1,0 +1,24 @@
+.dropdown-container button {
+  width: 100%;
+  height: 3rem;
+  background-color: #ffffff99;
+  color: black;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right: 1rem;
+  border: 1px solid #676767;
+  font-weight: 700;
+}
+
+.dropdown-container li {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.dropdown-container > ul > li:hover {
+  background-color: rgba(128, 128, 128, 0.506);
+}
