@@ -5,7 +5,6 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
 
-
 const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
   const navigate = useNavigate();
   const [cardNumber, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
@@ -40,15 +39,13 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
     <main style={{ position: "relative" }}>
       <div
         className="exitBtn"
-        onClick={() => navigate('/')}
+        onClick={() => navigate("/")}
         style={{
-
           cursor: "pointer",
           position: "absolute",
           top: "0.5rem",
           right: "1rem",
           fontSize: "1.5rem",
-
         }}
       >
         <FaTimes />
@@ -74,21 +71,21 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === '') {
-                setCardNumber('XXXX XXXX XXXX XXXX');
+              if (e.target.value === "") {
+                setCardNumber("XXXX XXXX XXXX XXXX");
                 return;
               }
-              const input = e.target.value.replace(/\D/g, '');
+              const input = e.target.value.replace(/\D/g, "");
               const formattedInput = input.replace(
                 /\B(?=(\d{4})+(?!\d))/g,
-                ' '
+                " "
               );
               setCardNumber(formattedInput);
 
               //Adds cardnumber into new array
               defaultValues.cardNumber = formattedInput;
             }}
-            value={cardNumber === 'XXXX XXXX XXXX XXXX' ? '' : cardNumber}
+            value={cardNumber === "XXXX XXXX XXXX XXXX" ? "" : cardNumber}
             type="text"
             maxLength={19}
             id="cardNumber"
@@ -104,17 +101,17 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === '') {
-                setCardHolderName('FIRSTNAME LASTNAME');
+              if (e.target.value === "") {
+                setCardHolderName("FIRSTNAME LASTNAME");
                 return;
               }
-              const input = e.target.value.replace(/[0-9]/g, '');
+              const input = e.target.value.replace(/[0-9]/g, "");
 
               defaultValues.cardholderName = input.toUpperCase();
               setCardHolderName(input.toUpperCase());
             }}
             value={
-              cardHolderName === 'FIRSTNAME LASTNAME' ? '' : cardHolderName
+              cardHolderName === "FIRSTNAME LASTNAME" ? "" : cardHolderName
             }
             type="text"
             id="cardHolderName"
@@ -133,7 +130,7 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
                 setvalidThru(e.target.value);
                 defaultValues.expiryDate = e.target.value;
               }}
-              value={validThru === 'MM/YY' ? '' : validThru}
+              value={validThru === "MM/YY" ? "" : validThru}
               placeholder="MM/YY"
               type="text"
               id="validThru"
@@ -150,16 +147,16 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
             <input
               maxLength={3}
               onChange={(e) => {
-                if (e.target.value === '') {
-                  setCcv('CCV');
+                if (e.target.value === "") {
+                  setCcv("CCV");
                   return;
                 }
-                const input = e.target.value.replace(/\D/g, '');
+                const input = e.target.value.replace(/\D/g, "");
 
                 setCcv(input);
                 defaultValues.CCV = input;
               }}
-              value={ccv === 'CCV' ? '' : ccv}
+              value={ccv === "CCV" ? "" : ccv}
               placeholder="123"
               type="text"
               id="ccv"
@@ -180,9 +177,9 @@ const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
             onChange={(e) => {
               setVendor(e.target.value);
               backgroundColors.map((item) => {
-                if (e.target.value === '') {
-                  setBgColor('#DCDCDC');
-                  setLogo('');
+                if (e.target.value === "") {
+                  setBgColor("#DCDCDC");
+                  setLogo("");
                 }
                 if (item.cardName === e.target.value) {
                   setBgColor(item.color);
