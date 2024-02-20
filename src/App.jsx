@@ -45,8 +45,16 @@ const cardDetails = [
 ];
 
 const App = () => {
-  const [mainCard, setMainCard] = useState(cardDetails[0]);
-  const [data, setData] = useState(cardDetails);
+  const storedData = JSON.parse(localStorage.getItem("data"));
+  const storedMainCard = JSON.parse(localStorage.getItem("mainCard"));
+
+  const [data, setData] = useState(storedData ? storedData : cardDetails);
+  const [mainCard, setMainCard] = useState(
+    storedMainCard ? storedMainCard : data[0]
+  );
+
+  localStorage.setItem("data", JSON.stringify(data));
+  localStorage.setItem("mainCard", JSON.stringify(mainCard));
 
   return (
     <Router>
@@ -56,6 +64,7 @@ const App = () => {
           element={
             <Home
               cardDetails={data}
+              setData={setData}
               mainCard={mainCard}
               setMainCard={setMainCard}
             />

@@ -4,27 +4,33 @@
 }
 
 @mixin input-styles {
+  background-color: white;
   padding-left: 1rem;
   height: 3rem;
   border-radius: 0.4rem;
 }
 
 @mixin label-styles {
-  color: black;
+  padding-top: 0.8rem;
   font-size: 0.8rem;
   text-align: left;
   font-family: "Sans Pro";
-  color: #22222299;
+  color:rgba(0, 0, 0, 0.8);
   letter-spacing: 0;
 }
 
 @mixin select-option-styles {
   text-align: center;
   font-family: monospace;
+  font-size: 1.5rem;
 }
 
 .formWrapper {
   @include form-wrapper;
+}
+
+input {
+  border: 1px solid #676767;
 }
 
 #ccv,
@@ -39,7 +45,7 @@
 }
 
 form {
-  margin: 3rem 0;
+  margin-top: 3rem;
 }
 
 .form--label {
@@ -56,9 +62,11 @@ select option {
 }
 
 .exitBtn {
-  // funkar?
-  cursor: "pointer";
-  position: "absolute";
-  top: 0;
-  right: 20%;
+  transform-origin: center;
+  color: rgb(106, 106, 106);
+  transition: all 0.3s ease-in-out;
+}
+.exitBtn:hover {
+  color: rgb(27, 27, 27);
+  transform: rotate(360deg);
 }

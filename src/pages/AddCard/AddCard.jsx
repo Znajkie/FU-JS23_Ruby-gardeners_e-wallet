@@ -3,33 +3,11 @@ import "./AddCard.scss";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
 
-const AddCard = ({
-  cardDetails,
-  data,
-  setData,
-  bitLogo,
-  blockC,
-  ninjaB,
-  evilC,
-}) => {
+
+const AddCard = ({ data, setData, bitLogo, blockC, ninjaB, evilC }) => {
   const navigate = useNavigate();
-  let newArray = [...data];
-  //Gets the length of the old array of cards, to be used for the id for the new card.
-  let lengthOfArray = newArray.length;
-  //Local storage
-  function addNewCard() {
-    setData([...data, defaultValues]);
-    console.log(data);
-    // newArray.push(defaultValues);
-    //Adds new array with cards into localstorage.
-    localStorage.setItem("Localstorage", JSON.stringify(newArray));
-    navigate("/");
-    defaultValues.id = lengthOfArray + 1;
-  }
-
   const [cardNumber, setCardNumber] = useState("XXXX XXXX XXXX XXXX");
   const [cardHolderName, setCardHolderName] = useState("FIRSTNAME LASTNAME");
   const [validThru, setvalidThru] = useState("MM/YY");
@@ -54,53 +32,69 @@ const AddCard = ({
     cardholderName: cardHolderName,
     expiryDate: validThru,
     logo: logo,
-    id: lengthOfArray + 1,
+    id: data.length + 1,
     backgroundColor: bgColor,
   };
 
   return (
-    <main>
+    <main style={{ position: "relative" }}>
       <div
         className="exitBtn"
-        onClick={() => navigate("/")}
+        onClick={() => navigate('/')}
         style={{
+
           cursor: "pointer",
           position: "absolute",
-          top: "4%",
-          right: "35%",
+          top: "0.5rem",
+          right: "1rem",
+          fontSize: "1.5rem",
+
         }}
       >
         <FaTimes />
       </div>
-      <h1>ADD A NEW BANK CARD</h1>
+      <h1>
+        ADD A NEW
+        <br />
+        BANK CARD
+      </h1>
       <p>NEW CARD</p>
       <Card {...defaultValues} vendor={vendor} />
-      <form>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setData([...data, defaultValues]);
+          navigate("/");
+        }}
+      >
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardNumber">
             CARD NUMBER
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === "") {
-                setCardNumber("XXXX XXXX XXXX XXXX");
+              if (e.target.value === '') {
+                setCardNumber('XXXX XXXX XXXX XXXX');
                 return;
               }
-              const input = e.target.value.replace(/\D/g, "");
+              const input = e.target.value.replace(/\D/g, '');
               const formattedInput = input.replace(
                 /\B(?=(\d{4})+(?!\d))/g,
-                " "
+                ' '
               );
               setCardNumber(formattedInput);
 
               //Adds cardnumber into new array
               defaultValues.cardNumber = formattedInput;
             }}
-            value={cardNumber === "XXXX XXXX XXXX XXXX" ? "" : cardNumber}
+            value={cardNumber === 'XXXX XXXX XXXX XXXX' ? '' : cardNumber}
             type="text"
             maxLength={19}
             id="cardNumber"
             placeholder="XXXX XXXX XXXX XXXX"
+            pattern="[0-9]{4}\s[0-9]{4}\s[0-9]{4}\s[0-9]{4}"
+            required
           />
         </div>
 
@@ -110,22 +104,22 @@ const AddCard = ({
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === "") {
-                setCardHolderName("FIRSTNAME LASTNAME");
+              if (e.target.value === '') {
+                setCardHolderName('FIRSTNAME LASTNAME');
                 return;
               }
-              const input = e.target.value.replace(/[0-9]/g, "");
+              const input = e.target.value.replace(/[0-9]/g, '');
 
               defaultValues.cardholderName = input.toUpperCase();
               setCardHolderName(input.toUpperCase());
             }}
             value={
-              cardHolderName === "FIRSTNAME LASTNAME" ? "" : cardHolderName
+              cardHolderName === 'FIRSTNAME LASTNAME' ? '' : cardHolderName
             }
             type="text"
             id="cardHolderName"
             placeholder="FIRSTNAME LASTNAME"
-            maxLength={23}
+            required
           />
         </div>
 
@@ -135,15 +129,17 @@ const AddCard = ({
               VALID THRU
             </label>
             <input
-              // maxLength={5}
               onChange={(e) => {
                 setvalidThru(e.target.value);
                 defaultValues.expiryDate = e.target.value;
               }}
-              value={validThru === "MM/YY" ? "" : validThru}
+              value={validThru === 'MM/YY' ? '' : validThru}
               placeholder="MM/YY"
               type="text"
               id="validThru"
+              maxLength={5}
+              pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+              required
             />
           </div>
 
@@ -154,34 +150,39 @@ const AddCard = ({
             <input
               maxLength={3}
               onChange={(e) => {
-                if (e.target.value === "") {
-                  setCcv("CCV");
+                if (e.target.value === '') {
+                  setCcv('CCV');
                   return;
                 }
-                const input = e.target.value.replace(/\D/g, "");
+                const input = e.target.value.replace(/\D/g, '');
 
                 setCcv(input);
                 defaultValues.CCV = input;
               }}
-              value={ccv === "CCV" ? "" : ccv}
+              value={ccv === 'CCV' ? '' : ccv}
               placeholder="123"
               type="text"
               id="ccv"
+              pattern="[0-9]{3}"
+              required
             />
           </div>
         </div>
-        <div className="form--inputs">
+        <div className="form--inputs" style={{ marginBottom: "3rem" }}>
           <label className="form--label" htmlFor="vendor">
             VENDOR
           </label>
+          <div className="dropdown-container">
+            <DropdownMenu />
+          </div>
           <select
             value={vendor}
             onChange={(e) => {
               setVendor(e.target.value);
               backgroundColors.map((item) => {
-                if (e.target.value === "") {
-                  setBgColor("#DCDCDC");
-                  setLogo("");
+                if (e.target.value === '') {
+                  setBgColor('#DCDCDC');
+                  setLogo('');
                 }
                 if (item.cardName === e.target.value) {
                   setBgColor(item.color);
@@ -190,6 +191,7 @@ const AddCard = ({
               });
             }}
             id="vendor"
+            required
           >
             <option value=""></option>
             <option value="Bitcoin">Bitcoin</option>
@@ -198,21 +200,10 @@ const AddCard = ({
             <option value="Evil Corp">Evil Corp</option>
           </select>
         </div>
+        <button className="addCard" type="submit">
+          ADD CARD
+        </button>
       </form>
-      <button
-        className="addCard"
-        onClick={() => {
-          if (cardNumber === "" || cardNumber.length < 16) {
-            toast("Wow so easy!");
-            return;
-          }
-
-          addNewCard();
-        }}
-      >
-        ADD CARD
-      </button>
-      <ToastContainer />
     </main>
   );
 };
