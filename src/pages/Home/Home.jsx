@@ -17,8 +17,10 @@ const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
         className="cards"
         style={{
           height: `${15.063 + 3 * (cardDetails.length - 2)}rem`,
-          width: '100%',
-          cursor: 'pointer',
+          width: "100%",
+          cursor: "pointer",
+          minHeight: "18rem",
+          marginTop: "2.5rem",
         }}
       >
         {cardDetails
@@ -35,11 +37,11 @@ const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
             />
           ))}
       </section>
-      <div className="newCardContainer">
-        <button className="newCard" onClick={() => navigate('/addCard')}>
-          ADD NEW A CARD
-        </button>
-      </div>
+      {/* <div className="newCardContainer"> */}
+      <button className="newCard" onClick={() => navigate("/addCard")}>
+        ADD NEW A CARD
+      </button>
+      {/* </div> */}
     </main>
   );
 };

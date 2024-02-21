@@ -5,6 +5,8 @@ import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
 import { nanoid } from "nanoid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();
@@ -47,13 +49,11 @@ const AddCard = ({ data, setData }) => {
       </h1>
       <p>NEW CARD</p>
       <Card {...defaultValues} vendor={vendor} />
-
       <form
         onSubmit={(e) => {
           e.preventDefault();
           if (vendor === "") {
-            console.log("Choose a vendor");
-            //Toaster
+            toast.error("PLEASE CHOOSE A VENDOR!");
             return;
           }
           setData([...data, defaultValues]);
@@ -76,9 +76,6 @@ const AddCard = ({ data, setData }) => {
                 " "
               );
               setCardNumber(formattedInput);
-
-              //Adds cardnumber into new array
-              defaultValues.cardNumber = formattedInput;
             }}
             value={cardNumber === "XXXX XXXX XXXX XXXX" ? "" : cardNumber}
             type="text"
@@ -111,6 +108,7 @@ const AddCard = ({ data, setData }) => {
             type="text"
             id="cardHolderName"
             placeholder="FIRSTNAME LASTNAME"
+            pattern="[a-zA-ZÄÅÖäåö ]{4,23}"
             required
           />
         </div>
@@ -172,6 +170,7 @@ const AddCard = ({ data, setData }) => {
           ADD CARD
         </button>
       </form>
+      <ToastContainer position="top-center" autoClose={2000} />
     </main>
   );
 };
