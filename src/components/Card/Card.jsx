@@ -2,7 +2,7 @@ import "./Card.scss";
 import chip from "../../assets/logo/chip.svg";
 import darkchip from "../../assets/logo/darkChip.svg";
 import { FaTimes } from "react-icons/fa";
-import wifiSymbol from '../../assets/logo/wifi.svg';
+import wifiSymbol from "../../assets/logo/wifi.svg";
 
 const Card = ({
   cardDetails,
@@ -23,25 +23,26 @@ const Card = ({
       className="card"
       style={{
         backgroundColor: backgroundColor,
-        top: index ? `${index * 3}rem` : '',
-        color: fontColor ? fontColor : 'black',
+        top: fontColor ? `${index * 3}rem` : "",
+        color: fontColor ? fontColor : "black",
       }}
       onClick={() => (fontColor ? changeMainCard(id) : null)}
     >
       {fontColor ? (
         <div
-        className="exitBtn"
-          // onClick={() => {
-          //   const updatedData = cardDetails.filter((item) => item.id !== id);
-          //   setData(updatedData);
-          //   localStorage.setItem('data', JSON.stringify(updatedData));
-          // }}
+          className="exitBtn"
+          onClick={(e) => {
+            e.stopPropagation();
+            const updatedData = cardDetails.filter((item) => item.id !== id);
+            setData(updatedData);
+            localStorage.setItem("data", JSON.stringify(updatedData));
+          }}
           style={{
-            cursor: 'pointer',
-            position: 'absolute',
-            top: '1rem',
-            right: '48%',
-            fontSize: '1.5rem',
+            cursor: "pointer",
+            position: "absolute",
+            top: "1rem",
+            right: "48%",
+            fontSize: "1.5rem",
           }}
         >
           <FaTimes />
@@ -57,7 +58,7 @@ const Card = ({
 
       <img
         className="imgChip"
-        src={vendor === '' ? darkchip : chip}
+        src={vendor === "" ? darkchip : chip}
         alt="chip symbol"
       ></img>
       <div className="cardNumber">{cardNumber}</div>

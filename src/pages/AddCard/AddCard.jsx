@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
-
+import { nanoid } from "nanoid";
 
 const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AddCard = ({ data, setData }) => {
     cardholderName: cardHolderName,
     expiryDate: validThru,
     logo: logo,
-    id: data.length + 1,
+    id: nanoid(),
     backgroundColor: bgColor,
   };
 
@@ -165,7 +165,7 @@ const AddCard = ({ data, setData }) => {
             VENDOR
           </label>
           <div className="dropdown-container">
-            <DropdownMenu {...{ setBgColor, setLogo, setVendor}} />
+            <DropdownMenu {...{ setBgColor, setLogo, setVendor }} />
           </div>
         </div>
         <button className="addCard" type="submit">

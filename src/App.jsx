@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import bitLogo from "./assets/logo/BitcoinLogo.svg";
-import blockC from './assets/logo/blockC.svg';
-import ninjaB from './assets/logo/ninjaB.svg';
-import evilC from './assets/logo/evilC.svg';
+import blockC from "./assets/logo/blockC.svg";
+import ninjaB from "./assets/logo/ninjaB.svg";
+import evilC from "./assets/logo/evilC.svg";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddCard from "./pages/AddCard/AddCard";
+import { nanoid } from "nanoid";
 
 const cardDetails = [
   {
@@ -15,7 +16,7 @@ const cardDetails = [
     cardholderName: "Christoffer Wallenberg",
     expiryDate: "12/22",
     logo: bitLogo,
-    id: 1,
+    id: nanoid(),
     backgroundColor: "#ffb342",
   },
   {
@@ -23,7 +24,7 @@ const cardDetails = [
     cardholderName: "Linus Hallberg",
     expiryDate: "10/23",
     logo: blockC,
-    id: 2,
+    id: nanoid(),
     backgroundColor: "#323232",
   },
   {
@@ -31,7 +32,7 @@ const cardDetails = [
     cardholderName: "Henrik Grönberg",
     expiryDate: "8/23",
     logo: ninjaB,
-    id: 3,
+    id: nanoid(),
     backgroundColor: "#7E50E3",
   },
   {
@@ -39,7 +40,7 @@ const cardDetails = [
     cardholderName: "Jens Grönberg",
     expiryDate: "8/23",
     logo: evilC,
-    id: 4,
+    id: nanoid(),
     backgroundColor: "#E33050",
   },
 ];

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 // vendor
-import bitcoinVendor from '../../../assets/vendor/bitcoinVendor.png';
-import blockC from '../../../assets/vendor/blockC.png';
+import bitcoinVendor from "../../../assets/vendor/bitcoinVendor.png";
+import blockC from "../../../assets/vendor/blockC.png";
 import evilC from "../../../assets/vendor/evilC.png";
-import ninjaB from '../../../assets/vendor/ninjaB.png';
+import ninjaB from "../../../assets/vendor/ninjaB.png";
 // logo
 import bitLogo from "../../../assets/logo/BitcoinLogo.svg";
-import blockCLogo from '../../../assets/logo/blockC.svg';
-import ninjaBLogo from '../../../assets/logo/ninjaB.svg';
+import blockCLogo from "../../../assets/logo/blockC.svg";
+import ninjaBLogo from "../../../assets/logo/ninjaB.svg";
 import evilCLogo from "../../../assets/logo/evilC.svg";
 import "./dropDownMenu.scss";
 
 const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [chosenVendor, setChosenVendor] = useState("");
 
   const toggleDropdown = (e) => {
     e.preventDefault(); // Prevent default action
@@ -33,15 +34,25 @@ const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
   }, [isOpen]);
 
   const options = [
-    { src: bitcoinVendor, value: '1', color: '#ffb342', logo: bitLogo },
-    { src: blockC, value: '2', color: '#7E50E3', logo: blockCLogo },
-    { src: evilC, value: '3', color: '#E33050', logo: ninjaBLogo },
-    { src: ninjaB, value: '4', color: '#323232', logo: evilCLogo },
+    { src: bitcoinVendor, value: "1", color: "#ffb342", logo: bitLogo },
+    { src: blockC, value: "2", color: "#7E50E3", logo: blockCLogo },
+    { src: evilC, value: "3", color: "#E33050", logo: ninjaBLogo },
+    { src: ninjaB, value: "4", color: "#323232", logo: evilCLogo },
   ];
 
   return (
     <div className="dropdown-container" style={{ position: "relative" }}>
-      <button id="vendor" onClick={toggleDropdown}>&#8744;</button>
+      <button id="vendor" onClick={toggleDropdown}>
+        <img
+          style={{
+            height: "85%",
+            objectFit: "contain",
+            paddingLeft: ".5rem",
+          }}
+          src={chosenVendor}
+        />
+        &#8744;
+      </button>
       {isOpen && (
         <ul
           style={{
@@ -59,6 +70,7 @@ const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
                 setLogo(option.logo);
                 setBgColor(option.color);
                 setVendor(option.value);
+                setChosenVendor(option.src);
                 setIsOpen(false);
               }}
             >
