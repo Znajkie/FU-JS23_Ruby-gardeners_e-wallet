@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import bitLogo from "./assets/BitcoinLogo.svg";
-import blockC from "./assets/blockC.svg";
-import ninjaB from "./assets/ninjaB.svg";
-import evilC from "./assets/evilC.svg";
+import bitLogo from "./assets/logo/BitcoinLogo.svg";
+import blockC from './assets/logo/blockC.svg';
+import ninjaB from './assets/logo/ninjaB.svg';
+import evilC from './assets/logo/evilC.svg';
 import "./App.css";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

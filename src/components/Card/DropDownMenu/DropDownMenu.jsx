@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 // vendor
-import bitcoinVendor from "../../../assets/bitcoinVendor.png";
-import blockC from "../../../assets/blockC.png";
-import evilC from "../../../assets/evilC.png";
-import ninjaB from "../../../assets/ninjaB.png";
+import bitcoinVendor from '../../../assets/vendor/bitcoinVendor.png';
+import blockC from '../../../assets/vendor/blockC.png';
+import evilC from "../../../assets/vendor/evilC.png";
+import ninjaB from '../../../assets/vendor/ninjaB.png';
 // logo
-import bitLogo from "../../../assets/BitcoinLogo.svg";
-import blockCLogo from "../../../assets/blockC.svg";
-import ninjaBLogo from "../../../assets/ninjaB.svg";
-import evilCLogo from "../../../assets/evilC.svg";
+import bitLogo from "../../../assets/logo/BitcoinLogo.svg";
+import blockCLogo from '../../../assets/logo/blockC.svg';
+import ninjaBLogo from '../../../assets/logo/ninjaB.svg';
+import evilCLogo from "../../../assets/logo/evilC.svg";
 import "./dropDownMenu.scss";
 
 const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
@@ -33,15 +33,15 @@ const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
   }, [isOpen]);
 
   const options = [
-    { src: bitcoinVendor, value: "1", color: "#ffb342", logo: bitLogo },
-    { src: blockC, value: "2", color: "#323232", logo: blockCLogo },
-    { src: evilC, value: "3", color: "#7E50E3", logo: ninjaBLogo },
-    { src: ninjaB, value: "4", color: "#E33050", logo: evilCLogo },
+    { src: bitcoinVendor, value: '1', color: '#ffb342', logo: bitLogo },
+    { src: blockC, value: '2', color: '#7E50E3', logo: blockCLogo },
+    { src: evilC, value: '3', color: '#E33050', logo: ninjaBLogo },
+    { src: ninjaB, value: '4', color: '#323232', logo: evilCLogo },
   ];
 
   return (
     <div className="dropdown-container" style={{ position: "relative" }}>
-      <button onClick={toggleDropdown}>&#8744;</button>
+      <button id="vendor" onClick={toggleDropdown}>&#8744;</button>
       {isOpen && (
         <ul
           style={{

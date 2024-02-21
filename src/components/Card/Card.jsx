@@ -1,7 +1,8 @@
 import "./Card.scss";
-import chip from "../../assets/chip.svg";
-import darkchip from "../../assets/darkChip.svg";
+import chip from "../../assets/logo/chip.svg";
+import darkchip from "../../assets/logo/darkChip.svg";
 import { FaTimes } from "react-icons/fa";
+import wifiSymbol from '../../assets/logo/wifi.svg';
 
 const Card = ({
   cardDetails,
@@ -22,23 +23,25 @@ const Card = ({
       className="card"
       style={{
         backgroundColor: backgroundColor,
-        top: index ? `${index * 3}rem` : "",
-        color: fontColor ? fontColor : "black",
+        top: index ? `${index * 3}rem` : '',
+        color: fontColor ? fontColor : 'black',
       }}
       onClick={() => (fontColor ? changeMainCard(id) : null)}
     >
       {fontColor ? (
         <div
-          className="exitBtn"
+        className="exitBtn"
           // onClick={() => {
-          //   setData(cardDetails.filter((item) => item.id !== id));
+          //   const updatedData = cardDetails.filter((item) => item.id !== id);
+          //   setData(updatedData);
+          //   localStorage.setItem('data', JSON.stringify(updatedData));
           // }}
           style={{
-            cursor: "pointer",
-            position: "absolute",
-            top: "1rem",
-            right: "48%",
-            fontSize: "1.5rem",
+            cursor: 'pointer',
+            position: 'absolute',
+            top: '1rem',
+            right: '48%',
+            fontSize: '1.5rem',
           }}
         >
           <FaTimes />
@@ -47,14 +50,14 @@ const Card = ({
 
       <section className="wrapperLogo">
         <section>
-          <img src="src/assets/noun_wifi_159786 1.svg" alt="Wifi symbol"></img>
+          <img src={wifiSymbol} alt="Wifi symbol"></img>
         </section>
         <img src={logo} alt=""></img>
       </section>
 
       <img
         className="imgChip"
-        src={vendor === "" ? darkchip : chip}
+        src={vendor === '' ? darkchip : chip}
         alt="chip symbol"
       ></img>
       <div className="cardNumber">{cardNumber}</div>

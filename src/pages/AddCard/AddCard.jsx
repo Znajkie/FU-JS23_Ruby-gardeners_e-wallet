@@ -165,7 +165,7 @@ const AddCard = ({ data, setData }) => {
             VENDOR
           </label>
           <div className="dropdown-container">
-            <DropdownMenu {...{ setBgColor, setLogo, setVendor }} />
+            <DropdownMenu {...{ setBgColor, setLogo, setVendor}} />
           </div>
         </div>
         <button className="addCard" type="submit">

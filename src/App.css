@@ -7,7 +7,10 @@
 }
 
 main {
-  /* height: 56rem; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 55rem;
   padding: 1rem;
   background-color: rgb(255, 255, 255);
   margin: 1rem 0;
@@ -37,6 +40,26 @@ main > p {
   position: absolute;
 }
 
+
+.exitBtn {
+  transform-origin: center;
+  color: rgb(106, 106, 106);
+  transition: all 0.3s ease-in-out;
+}
+.exitBtn:hover {
+  color: rgb(27, 27, 27);
+  transform: rotate(360deg);
+}
+
+main > .newCardContainer  {
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto; 
+  text-align: center;
+  width: 100%; 
+}
+
 .newCard {
   width: 100%;
   font-size: 1.5rem;
@@ -45,14 +68,5 @@ main > p {
   color: rgb(0, 0, 0);
   border: 1px solid black;
   padding: 1.5rem 0;
-}
-
-.addCard {
-  width: 100%;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  border: 1px solid black;
-  padding: 1.5rem 0;
+  justify-content: end;
 }
