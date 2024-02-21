@@ -61,12 +61,12 @@ select option {
   @include select-option-styles;
 }
 
-.exitBtn {
-  transform-origin: center;
-  color: rgb(106, 106, 106);
-  transition: all 0.3s ease-in-out;
-}
-.exitBtn:hover {
-  color: rgb(27, 27, 27);
-  transform: rotate(360deg);
+.addCard {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 1px solid black;
+  padding: 1.5rem 0;
 }
