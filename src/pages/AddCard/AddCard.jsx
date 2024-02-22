@@ -1,9 +1,7 @@
 import Card from "../../components/Card/Card";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { nanoid } from "nanoid";
 import { FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
