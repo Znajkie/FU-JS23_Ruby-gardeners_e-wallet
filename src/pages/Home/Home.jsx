@@ -37,11 +37,9 @@ const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
             />
           ))}
       </section>
-      {/* <div className="newCardContainer"> */}
       <button className="newCard" onClick={() => navigate("/addCard")}>
         ADD NEW A CARD
       </button>
-      {/* </div> */}
     </main>
   );
 };

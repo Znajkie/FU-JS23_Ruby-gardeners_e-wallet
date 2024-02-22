@@ -1,5 +1,5 @@
 import Card from "../../components/Card/Card";
-import "./AddCard.scss";
+import "./addCard.scss";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -28,56 +28,48 @@ const AddCard = ({ data, setData }) => {
   };
 
   return (
-    <main style={{ position: "relative" }}>
-      <div
-        className="exitBtn"
-        onClick={() => navigate("/")}
-        style={{
-          cursor: "pointer",
-          position: "absolute",
-          top: "0.5rem",
-          right: "1rem",
-          fontSize: "1.5rem",
-        }}
-      >
+    <main>
+      <div className="add-card__exit-btn" onClick={() => navigate('/')}>
         <FaTimes />
       </div>
-      <h1>
+      <h1 className="add-card__title">
         ADD A NEW
         <br />
         BANK CARD
       </h1>
-      <p>NEW CARD</p>
+      <p className="add-card__subtitle">NEW CARD</p>
       <Card {...defaultValues} vendor={vendor} />
       <form
+        id="add-card__form"
         onSubmit={(e) => {
           e.preventDefault();
-          if (vendor === "") {
-            toast.error("PLEASE CHOOSE A VENDOR!");
+          if (vendor === '') {
+            toast.error('PLEASE CHOOSE A VENDOR!');
             return;
           }
           setData([...data, defaultValues]);
-          navigate("/");
+          navigate('/');
         }}
       >
+        {/* Number */}
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardNumber">
             CARD NUMBER
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === "") {
-                setCardNumber("XXXX XXXX XXXX XXXX");
+              if (e.target.value === '') {
+                setCardNumber('XXXX XXXX XXXX XXXX');
                 return;
               }
-              const input = e.target.value.replace(/\D/g, "");
+              const input = e.target.value.replace(/\D/g, '');
               const formattedInput = input.replace(
                 /\B(?=(\d{4})+(?!\d))/g,
-                " "
+                ' '
               );
               setCardNumber(formattedInput);
             }}
-            value={cardNumber === "XXXX XXXX XXXX XXXX" ? "" : cardNumber}
+            value={cardNumber === 'XXXX XXXX XXXX XXXX' ? '' : cardNumber}
             type="text"
             maxLength={19}
             id="cardNumber"
@@ -86,24 +78,23 @@ const AddCard = ({ data, setData }) => {
             required
           />
         </div>
-
+        {/* Name */}
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardHolderName">
             CARDHOLDER NAME
           </label>
           <input
             onChange={(e) => {
-              if (e.target.value === "") {
-                setCardHolderName("FIRSTNAME LASTNAME");
+              if (e.target.value === '') {
+                setCardHolderName('FIRSTNAME LASTNAME');
                 return;
               }
-              const input = e.target.value.replace(/[0-9]/g, "");
-
+              const input = e.target.value.replace(/[0-9]/g, '');
               defaultValues.cardholderName = input.toUpperCase();
               setCardHolderName(input.toUpperCase());
             }}
             value={
-              cardHolderName === "FIRSTNAME LASTNAME" ? "" : cardHolderName
+              cardHolderName === 'FIRSTNAME LASTNAME' ? '' : cardHolderName
             }
             type="text"
             id="cardHolderName"
@@ -112,8 +103,8 @@ const AddCard = ({ data, setData }) => {
             required
           />
         </div>
-
-        <div className="formWrapper">
+        {/* Expire Date */}
+        <section className="form__bottom-container">
           <div className="form--inputs">
             <label className="form--label" htmlFor="validThru">
               VALID THRU
@@ -121,9 +112,9 @@ const AddCard = ({ data, setData }) => {
             <input
               onChange={(e) => {
                 setvalidThru(e.target.value);
-                defaultValues.expiryDate = e.target.value;
+                defaultValues.validThru = e.target.value;
               }}
-              value={validThru === "MM/YY" ? "" : validThru}
+              value={validThru === 'YY/MM' ? '' : validThru}
               placeholder="MM/YY"
               type="text"
               id="validThru"
@@ -132,7 +123,7 @@ const AddCard = ({ data, setData }) => {
               required
             />
           </div>
-
+          {/* Card verification value */}
           <div className="form--inputs">
             <label className="form--label" htmlFor="ccv">
               CCV
@@ -140,16 +131,15 @@ const AddCard = ({ data, setData }) => {
             <input
               maxLength={3}
               onChange={(e) => {
-                if (e.target.value === "") {
-                  setCcv("CCV");
+                if (e.target.value === '') {
+                  setCcv('CCV');
                   return;
                 }
-                const input = e.target.value.replace(/\D/g, "");
-
+                const input = e.target.value.replace(/\D/g, '');
                 setCcv(input);
                 defaultValues.CCV = input;
               }}
-              value={ccv === "CCV" ? "" : ccv}
+              value={ccv === 'CCV' ? '' : ccv}
               placeholder="123"
               type="text"
               id="ccv"
@@ -157,8 +147,9 @@ const AddCard = ({ data, setData }) => {
               required
             />
           </div>
-        </div>
-        <div className="form--inputs" style={{ marginBottom: "3rem" }}>
+        </section>
+        {/* Vendor */}
+        <div className="form--inputs" style={{ marginBottom: '3rem' }}>
           <label className="form--label" htmlFor="vendor">
             VENDOR
           </label>
@@ -166,7 +157,7 @@ const AddCard = ({ data, setData }) => {
             <DropdownMenu {...{ setBgColor, setLogo, setVendor }} />
           </div>
         </div>
-        <button className="addCard" type="submit">
+        <button className="add-card__submit-btn" type="submit">
           ADD CARD
         </button>
       </form>

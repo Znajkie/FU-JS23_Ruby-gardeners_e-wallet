@@ -27,11 +27,6 @@ body {
   min-height: 100vh;
 }
 
-button {
-  cursor: pointer;
-  border-radius: 8px;
-}
-
 main {
   display: flex;
   justify-content: center;
@@ -65,12 +60,17 @@ main > p {
   position: absolute;
 }
 
-.exitBtn {
+button {
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.add-card__exit-btn, .card__delete-btn {
   transform-origin: center;
   color: rgb(106, 106, 106);
   transition: all 0.3s ease-in-out;
 }
-.exitBtn:hover {
+.add-card__exit-btn:hover, .card__delete-btn:hover {
   color: rgb(27, 27, 27);
   transform: rotate(360deg);
 }

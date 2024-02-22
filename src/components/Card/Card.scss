@@ -14,65 +14,69 @@
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
+.card {
+  @include card-base;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.card {
-  @include card-base;
-}
-
-.wrapperLogo {
+.card__vendor-container {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   padding-bottom: 0;
 }
 
-.imgChip {
+.card__chip {
   margin-left: 1rem;
 }
 
-.cardNumber {
+.card__number {
   display: flex;
   justify-content: center;
-  font-size: 30.5px;
+  font-size: 29px;
   height: 3rem;
   padding: 0;
+  letter-spacing: 0.03em;
 }
 
-.cardName p {
+.card__name-title p, .card__date-title p {
   font-size: 12px;
 }
 
-.cardholderName {
+.card__name, .card__date {
   font-size: 18px;
 }
 
-.cardDate {
+.card__date {
   display: flex;
   flex-direction: column;
   align-items: end;
 }
 
-.expiryDate {
-  font-size: 18px;
-}
-
-.bottom {
+.card__bottom {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem 1rem;
   margin-top: 1rem;
 }
 
-.wrapperName {
+.card__name-container {
   display: flex;
   flex-direction: column;
 }
 
-.wrapperDate {
+.card__date-container {
   display: flex;
+}
+
+.card__delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 48%;
+  font-size: 1.5rem;
 }
