@@ -1,4 +1,8 @@
-.dropdown-container button {
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
   width: 100%;
   height: 3rem;
   background-color: #ffffff99;
@@ -11,13 +15,25 @@
   font-weight: 700;
 }
 
-.dropdown-container li {
+.dropdown img {
+  height: 85%;
+  object-Fit: contain;
+  padding-Left: .5rem;
+}
+
+.dropdown ul {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+}
+
+.dropdown li {
   display: flex;
   justify-content: center;
   list-style-type: none;
   padding: 0.2rem;
 }
 
-.dropdown-container > ul > li:hover {
+.dropdown > ul > li:hover {
   background-color: rgba(128, 128, 128, 0.506);
 }

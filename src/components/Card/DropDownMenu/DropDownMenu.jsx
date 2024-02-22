@@ -1,85 +1,70 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 // vendor
-import bitcoinVendor from "../../../assets/vendor/bitcoinVendor.png";
-import blockC from "../../../assets/vendor/blockC.png";
-import evilC from "../../../assets/vendor/evilC.png";
-import ninjaB from "../../../assets/vendor/ninjaB.png";
+import bitcoinVendor from '../../../assets/vendor/bitcoinVendor.png';
+import blockC from '../../../assets/vendor/blockC.png';
+import evilC from '../../../assets/vendor/evilC.png';
+import ninjaB from '../../../assets/vendor/ninjaB.png';
 // logo
-import bitLogo from "../../../assets/logo/BitcoinLogo.svg";
-import blockCLogo from "../../../assets/logo/blockC.svg";
-import ninjaBLogo from "../../../assets/logo/ninjaB.svg";
-import evilCLogo from "../../../assets/logo/evilC.svg";
-import "./dropDownMenu.scss";
+import bitLogo from '../../../assets/logo/BitcoinLogo.svg';
+import blockCLogo from '../../../assets/logo/blockC.svg';
+import ninjaBLogo from '../../../assets/logo/ninjaB.svg';
+import evilCLogo from '../../../assets/logo/evilC.svg';
+import './dropDownMenu.scss';
 
 const DropdownMenu = ({ setBgColor, setLogo, setVendor }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [chosenVendor, setChosenVendor] = useState("");
+  const [chosenVendor, setChosenVendor] = useState('');
 
   const toggleDropdown = (e) => {
-    e.preventDefault(); // Prevent default action
+    e.preventDefault();
     setIsOpen((prev) => !prev); // Toggle the dropdown open state
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest(".dropdown-container") && isOpen) {
+      if (!event.target.closest('.dropdown') && isOpen) {
         setIsOpen(false);
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
+   
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
 
-  const options = [
-    { src: bitcoinVendor, value: "1", color: "#ffb342", logo: bitLogo },
-    { src: blockC, value: "2", color: "#7E50E3", logo: blockCLogo },
-    { src: evilC, value: "3", color: "#E33050", logo: ninjaBLogo },
-    { src: ninjaB, value: "4", color: "#323232", logo: evilCLogo },
+  const vendor = [
+    { src: bitcoinVendor, value: '1', color: '#ffb342', logo: bitLogo },
+    { src: blockC, value: '2', color: '#7E50E3', logo: blockCLogo },
+    { src: evilC, value: '3', color: '#E33050', logo: ninjaBLogo },
+    { src: ninjaB, value: '4', color: '#323232', logo: evilCLogo },
   ];
 
   return (
-    <div className="dropdown-container" style={{ position: "relative" }}>
+    <div className="dropdown">
       <button id="vendor" onClick={toggleDropdown}>
-        <img
-          style={{
-            height: "85%",
-            objectFit: "contain",
-            paddingLeft: ".5rem",
-          }}
-          src={chosenVendor}
-        />
-        &#8744;
+        <img src={chosenVendor}/>&#8744;
       </button>
       {isOpen && (
-        <ul
-          style={{
-            position: "absolute",
-            backgroundColor: "white",
-            width: "100%",
-          }}
-          className="dropDownOption"
-        >
-          {options.map((option, index) => (
+        <ul>
+          {vendor.map((vendor, index) => (
             <li
               key={index}
               onClick={(e) => {
                 e.stopPropagation(); // Prevents the click from being propagated to document
-                setLogo(option.logo);
-                setBgColor(option.color);
-                setVendor(option.value);
-                setChosenVendor(option.src);
+                setLogo(vendor.logo);
+                setBgColor(vendor.color);
+                setVendor(vendor.value);
+                setChosenVendor(vendor.src);
                 setIsOpen(false);
               }}
             >
               <img
-                src={option.src}
-                alt={option.label}
+                src={vendor.src}
+                alt={vendor.label}
                 style={{ width: 200, height: 40 }}
               />
-              {option.label}
+              {vendor.label}
             </li>
           ))}
         </ul>

@@ -1,78 +1,75 @@
 import "./Card.scss";
-import chip from "../../assets/logo/chip.svg";
+import "../../App.css";
+import lightchip from "../../assets/logo/chip.svg";
 import darkchip from "../../assets/logo/darkChip.svg";
 import { FaTimes } from "react-icons/fa";
 import wifiSymbol from "../../assets/logo/wifi.svg";
 
 const Card = ({
-  cardDetails,
+  data,
   cardNumber,
+  inCardList,
+  index,
+  changeMainCard,
+  setData,
+
   cardholderName,
   expiryDate,
   logo,
-  index,
   backgroundColor,
-  fontColor,
-  changeMainCard,
   id,
   vendor,
-  setData,
 }) => {
   return (
     <div
       className="card"
       style={{
         backgroundColor: backgroundColor,
-        top: fontColor ? `${index * 3}rem` : "",
-        color: fontColor ? fontColor : "black",
+        top: inCardList ? `${index * 3}rem` : "",
+        color: inCardList ? "white" : "black",
       }}
-      onClick={() => (fontColor ? changeMainCard(id) : null)}
+      onClick={() => (inCardList ? changeMainCard(id) : null)}
     >
-      {fontColor ? (
+      {inCardList ? (
         <div
-          className="exitBtn"
+          className="card__delete-btn"
           onClick={(e) => {
             e.stopPropagation();
-            const updatedData = cardDetails.filter((item) => item.id !== id);
+            const updatedData = data.filter((item) => item.id !== id);
             setData(updatedData);
-            localStorage.setItem("data", JSON.stringify(updatedData));
-          }}
-          style={{
-            cursor: "pointer",
-            position: "absolute",
-            top: "1rem",
-            right: "48%",
-            fontSize: "1.5rem",
           }}
         >
           <FaTimes />
         </div>
       ) : null}
 
-      <section className="wrapperLogo">
+      {/* vendor logo */}
+      <section className="card__vendor-container">
         <section>
-          <img src={wifiSymbol} alt="Wifi symbol"></img>
+          <img src={wifiSymbol} alt="Wifi logo"></img>
         </section>
         <img src={logo} alt=""></img>
       </section>
-
+      {/* chip logo */}
       <img
-        className="imgChip"
-        src={vendor === "" ? darkchip : chip}
-        alt="chip symbol"
-      ></img>
-      <div className="cardNumber">{cardNumber}</div>
-      <section className="bottom">
-        <div className="wrapperName">
-          <div className="cardName">
+        className="card__chip"
+        src={vendor === "" ? darkchip : lightchip}
+        alt="chip logo"
+      />
+      {/* Card number */}
+      <div className="card__number">{cardNumber}</div>
+      {/* Bottom section with card name, and date */}
+      <section className="card__bottom">
+        <div className="card__name-container">
+          <div className="card__name-title">
             <p>CARDHOLDER NAME</p>
-            <span className="cardholderName">{cardholderName}</span>
+            <span className="card__name">{cardholderName}</span>
           </div>
         </div>
-        <div className="wapperDate">
-          <div className="cardDate">
+        <div className="card__date-container">
+          <div className="card__date-title">
             <p>VALID THRU</p>
-            <span className="expiryDate">{expiryDate}</span>
+            <span className="card__date">{expiryDate}</span>
           </div>
         </div>
       </section>

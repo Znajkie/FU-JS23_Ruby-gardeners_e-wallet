@@ -1,9 +1,9 @@
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
 
-const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
+const Home = ({ data, setMainCard, mainCard, setData }) => {
   const changeMainCard = (id) => {
-    const newCard = cardDetails.find((item) => item.id === id);
+    const newCard = data.find((item) => item.id === id);
     setMainCard(newCard);
   };
 
@@ -16,32 +16,26 @@ const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
       <section
         className="cards"
         style={{
-          height: `${15.063 + 3 * (cardDetails.length - 2)}rem`,
-          width: "100%",
-          cursor: "pointer",
-          minHeight: "21rem",
-          marginTop: "2.5rem",
+          height: `${15.063 + 3 * (data.length - 2)}rem`,
         }}
       >
-        {cardDetails
+        {data
           .filter((item) => item.id !== mainCard.id)
           .map((item, index) => (
             <Card
               key={item.id}
               {...item}
               index={index}
-              fontColor="white"
+              inCardList={true}
               changeMainCard={changeMainCard}
               setData={setData}
-              cardDetails={cardDetails}
+              data={data}
             />
           ))}
       </section>
-      {/* <div className="newCardContainer"> */}
       <button className="newCard" onClick={() => navigate("/addCard")}>
         ADD NEW A CARD
       </button>
-      {/* </div> */}
     </main>
   );
 };

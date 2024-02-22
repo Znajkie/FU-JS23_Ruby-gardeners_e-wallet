@@ -1,12 +1,14 @@
 import Card from "../../components/Card/Card";
-import "./AddCard.scss";
-import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import DropdownMenu from "../../components/Card/DropDownMenu/DropDownMenu";
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { nanoid } from "nanoid";
+import { FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./AddCard.scss";
 
 const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();
@@ -28,28 +30,19 @@ const AddCard = ({ data, setData }) => {
   };
 
   return (
-    <main style={{ position: "relative" }}>
-      <div
-        className="exitBtn"
-        onClick={() => navigate("/")}
-        style={{
-          cursor: "pointer",
-          position: "absolute",
-          top: "0.5rem",
-          right: "1rem",
-          fontSize: "1.5rem",
-        }}
-      >
+    <main>
+      <div className="add-card__exit-btn" onClick={() => navigate("/")}>
         <FaTimes />
       </div>
-      <h1>
+      <h1 className="add-card__title">
         ADD A NEW
         <br />
         BANK CARD
       </h1>
-      <p>NEW CARD</p>
+      <p className="add-card__subtitle">NEW CARD</p>
       <Card {...defaultValues} vendor={vendor} />
       <form
+        id="add-card__form"
         onSubmit={(e) => {
           e.preventDefault();
           if (vendor === "") {
@@ -86,7 +79,7 @@ const AddCard = ({ data, setData }) => {
             required
           />
         </div>
-
+        {/* Name */}
         <div className="form--inputs">
           <label className="form--label" htmlFor="cardHolderName">
             CARDHOLDER NAME
@@ -98,7 +91,6 @@ const AddCard = ({ data, setData }) => {
                 return;
               }
               const input = e.target.value.replace(/[0-9]/g, "");
-
               defaultValues.cardholderName = input.toUpperCase();
               setCardHolderName(input.toUpperCase());
             }}
@@ -112,8 +104,8 @@ const AddCard = ({ data, setData }) => {
             required
           />
         </div>
-
-        <div className="formWrapper">
+        {/* Expire Date */}
+        <section className="form__bottom-container">
           <div className="form--inputs">
             <label className="form--label" htmlFor="validThru">
               VALID THRU
@@ -121,7 +113,7 @@ const AddCard = ({ data, setData }) => {
             <input
               onChange={(e) => {
                 setvalidThru(e.target.value);
-                defaultValues.expiryDate = e.target.value;
+                defaultValues.validThru = e.target.value;
               }}
               value={validThru === "MM/YY" ? "" : validThru}
               placeholder="MM/YY"
@@ -132,7 +124,7 @@ const AddCard = ({ data, setData }) => {
               required
             />
           </div>
-
+          {/* Card verification value */}
           <div className="form--inputs">
             <label className="form--label" htmlFor="ccv">
               CCV
@@ -145,7 +137,6 @@ const AddCard = ({ data, setData }) => {
                   return;
                 }
                 const input = e.target.value.replace(/\D/g, "");
-
                 setCcv(input);
                 defaultValues.CCV = input;
               }}
@@ -157,7 +148,8 @@ const AddCard = ({ data, setData }) => {
               required
             />
           </div>
-        </div>
+        </section>
+        {/* Vendor */}
         <div className="form--inputs" style={{ marginBottom: "3rem" }}>
           <label className="form--label" htmlFor="vendor">
             VENDOR
@@ -166,7 +158,7 @@ const AddCard = ({ data, setData }) => {
             <DropdownMenu {...{ setBgColor, setLogo, setVendor }} />
           </div>
         </div>
-        <button className="addCard" type="submit">
+        <button className="add-card__submit-btn" type="submit">
           ADD CARD
         </button>
       </form>
