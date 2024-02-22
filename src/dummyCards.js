@@ -1,5 +1,4 @@
 import { nanoid } from "nanoid";
-
 import bitLogo from "./assets/logo/BitcoinLogo.svg";
 import blockC from "./assets/logo/blockC.svg";
 import ninjaB from "./assets/logo/ninjaB.svg";
