@@ -1,10 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import Home from "./pages/Home/Home";
 import AddCard from "./pages/AddCard/AddCard";
-
 import "./App.css";
 import cardDetails from "./dummyCards";
 
