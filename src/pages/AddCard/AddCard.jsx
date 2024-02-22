@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 import { FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./AddCard.scss";
+import "./addCard.scss";
 
 const AddCard = ({ data, setData }) => {
   const navigate = useNavigate();

@@ -14,7 +14,7 @@ const cardDetails = [
     backgroundColor: "#ffb342",
   },
   {
-    cardNumber: "6666 6666 6666 6666",
+    cardNumber: "1445 7641 5151 6645",
     cardholderName: "Linus Hallberg",
     expiryDate: "10/23",
     logo: blockC,
@@ -22,7 +22,7 @@ const cardDetails = [
     backgroundColor: "#323232",
   },
   {
-    cardNumber: "3333 3333 3333 3333",
+    cardNumber: "1233 1193 4144 3323",
     cardholderName: "Henrik Grönberg",
     expiryDate: "8/23",
     logo: ninjaB,

@@ -12,7 +12,6 @@ const Card = ({
   index,
   changeMainCard,
   setData,
-
   cardholderName,
   expiryDate,
   logo,
