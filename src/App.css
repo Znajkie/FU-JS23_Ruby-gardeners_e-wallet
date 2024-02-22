@@ -1,3 +1,15 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #d2d2d2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @font-face {
   font-family: "Sans Pro";
   src: url("../src/assets/fonts/SourceCodePro-VariableFont_wght.ttf")
@@ -6,13 +18,27 @@
   font-style: normal;
 }
 
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 8px;
+}
+
 main {
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 1rem;
   background-color: rgb(255, 255, 255);
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 h1 {

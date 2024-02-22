@@ -19,7 +19,7 @@ const Home = ({ cardDetails, setMainCard, mainCard, setData }) => {
           height: `${15.063 + 3 * (cardDetails.length - 2)}rem`,
           width: "100%",
           cursor: "pointer",
-          minHeight: "18rem",
+          minHeight: "21rem",
           marginTop: "2.5rem",
         }}
       >
